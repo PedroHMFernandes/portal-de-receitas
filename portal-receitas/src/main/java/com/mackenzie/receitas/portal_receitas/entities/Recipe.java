@@ -9,11 +9,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "recipes")
 public class Recipe implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String imageLink;
+    private String imageUrl;
     private String description;
     private Integer prepTimeMinutes;
     private Integer servings;
@@ -33,7 +36,7 @@ public class Recipe implements Serializable {
                   Integer prepTimeMinutes, Integer servings, Category category, User author) {
         this.id = id;
         this.name = name;
-        this.imageLink = imageLink;
+        this.imageUrl = imageLink;
         this.description = description;
         this.prepTimeMinutes = prepTimeMinutes;
         this.servings = servings;
@@ -57,12 +60,12 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public String getImageLink() {
-        return imageLink;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+    public void setImageUrl(String imageLink) {
+        this.imageUrl = imageLink;
     }
 
     public String getDescription() {
