@@ -15,8 +15,6 @@ public class UserController {
     @Autowired
     private UserService service;
 
-
-
     // READ
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAll() {

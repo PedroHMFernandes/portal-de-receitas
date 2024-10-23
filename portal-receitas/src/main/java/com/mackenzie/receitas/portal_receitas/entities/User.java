@@ -1,13 +1,16 @@
 package com.mackenzie.receitas.portal_receitas.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -16,17 +19,19 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String email;
-    private String phone;
     private String password;
+
+    @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    private List<Recipe> recipes = new ArrayList<>();
 
     public User() {
     }
 
-    public User(Long id, String name, String email, String phone, String password) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.phone = phone;
         this.password = password;
     }
 
@@ -54,20 +59,16 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
     @Override
