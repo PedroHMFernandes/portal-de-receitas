@@ -2,7 +2,6 @@ package com.mackenzie.receitas.portal_receitas.controllers;
 
 import com.mackenzie.receitas.portal_receitas.entities.Recipe;
 import com.mackenzie.receitas.portal_receitas.services.RecipeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +14,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class RecipeController {
 
-    @Autowired
-    private RecipeService service;
+    private final RecipeService service;
+
+    public RecipeController(RecipeService service) {
+        this.service = service;
+    }
 
     // READ
     @GetMapping("/recipes")

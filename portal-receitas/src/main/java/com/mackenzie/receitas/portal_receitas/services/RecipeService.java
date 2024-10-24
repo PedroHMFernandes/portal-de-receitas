@@ -2,7 +2,6 @@ package com.mackenzie.receitas.portal_receitas.services;
 
 import com.mackenzie.receitas.portal_receitas.entities.Recipe;
 import com.mackenzie.receitas.portal_receitas.repositories.RecipeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
