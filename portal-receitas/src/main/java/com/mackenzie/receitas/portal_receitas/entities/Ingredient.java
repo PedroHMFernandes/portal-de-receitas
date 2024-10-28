@@ -3,13 +3,15 @@ package com.mackenzie.receitas.portal_receitas.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "ingredients")
-public class Ingredient {
+public class Ingredient implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -17,17 +19,16 @@ public class Ingredient {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "ingredients")
     @JsonIgnore
-    private List<Recipe> recipes = new ArrayList<>();
+    @ManyToMany(mappedBy = "ingredients")
+    private Set<Recipe> recipes = new HashSet<>();
 
     public Ingredient() {
     }
 
-    public Ingredient(Long id, String name, List<Recipe> recipes) {
+    public Ingredient(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.recipes = recipes;
     }
 
     public Long getId() {
@@ -46,12 +47,8 @@ public class Ingredient {
         this.name = name;
     }
 
-    public List<Recipe> getRecipes() {
+    public Set<Recipe> getRecipes() {
         return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
     }
 
     @Override

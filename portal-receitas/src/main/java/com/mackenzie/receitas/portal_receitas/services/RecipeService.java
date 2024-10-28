@@ -25,8 +25,4 @@ public class RecipeService {
         Optional<Recipe> obj = repository.findById(id);
         return obj.get();
     }
-
-    public List<Recipe> findByCategory(Long categoryId){
-
-    }
 }

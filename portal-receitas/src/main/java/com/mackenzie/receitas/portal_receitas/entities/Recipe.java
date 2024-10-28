@@ -4,9 +4,9 @@ package com.mackenzie.receitas.portal_receitas.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "recipes")
@@ -37,14 +37,14 @@ public class Recipe implements Serializable {
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
     )
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     public Recipe() {
     }
 
-    public Recipe(Long id, String name, String imageLink, String description,
-                  Integer prepTimeMinutes, Integer servings,
-                  Category category, User author, List<Ingredient> ingredients) {
+    public Recipe(Long id, String name, String imageLink,
+                  String description, Integer prepTimeMinutes,
+                  Integer servings, Category category, User author) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageLink;
@@ -53,7 +53,6 @@ public class Recipe implements Serializable {
         this.servings = servings;
         this.category = category;
         this.author = author;
-        this.ingredients = ingredients;
     }
 
     public Long getId() {
@@ -120,9 +119,9 @@ public class Recipe implements Serializable {
         this.author = author;
     }
 
-    public List<Ingredient> getIngredients() { return ingredients; }
-
-    public void setIngredients(List<Ingredient> ingredients) { this.ingredients = ingredients; }
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
     @Override
     public boolean equals(Object o) {

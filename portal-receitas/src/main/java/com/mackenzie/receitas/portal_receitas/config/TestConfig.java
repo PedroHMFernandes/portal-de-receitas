@@ -5,6 +5,7 @@ import com.mackenzie.receitas.portal_receitas.entities.Ingredient;
 import com.mackenzie.receitas.portal_receitas.entities.Recipe;
 import com.mackenzie.receitas.portal_receitas.entities.User;
 import com.mackenzie.receitas.portal_receitas.repositories.CategoryRepository;
+import com.mackenzie.receitas.portal_receitas.repositories.IngredientRepository;
 import com.mackenzie.receitas.portal_receitas.repositories.RecipeRepository;
 import com.mackenzie.receitas.portal_receitas.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -34,10 +38,16 @@ public class TestConfig implements CommandLineRunner {
         User u2 = new User(null, "Jorge", "jorge@gmail.com", "12345");
         User u3 = new User(null, "Robirso", "robirso@gmail.com", "12345");
 
-        Ingredient i1 = new Ingredient(null, "Arroz", null);
-
         Category cat1 = new Category(null, "Aves");
         Category cat2 = new Category(null, "Molhos");
+
+        Ingredient i1 = new Ingredient(null, "Sal");
+        Ingredient i2 = new Ingredient(null, "Pimenta do reino");
+        Ingredient i3 = new Ingredient(null, "Mortandela");
+
+        userRepository.saveAll(Arrays.asList(u1, u2, u3));
+        ingredientRepository.saveAll(Arrays.asList(i1, i2, i3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2));
 
         Recipe r1 = new Recipe(null, "Frango com Curry", "imageLink",
                 "blablabla", 40, 4, cat2, u2);
@@ -45,8 +55,11 @@ public class TestConfig implements CommandLineRunner {
         Recipe r2 = new Recipe(null, "Molho pesto", "imageLink",
                 "bla", 15, 2, cat1, u3);
 
-        userRepository.saveAll(Arrays.asList(u1, u2, u3));
-        categoryRepository.saveAll(Arrays.asList(cat1, cat2));
+        r1.getIngredients().add(i1);
+        r2.getIngredients().add(i1);
+        r2.getIngredients().add(i2);
+        r2.getIngredients().add(i3);
+
         recipeRepository.saveAll(Arrays.asList(r1, r2));
     }
 }
