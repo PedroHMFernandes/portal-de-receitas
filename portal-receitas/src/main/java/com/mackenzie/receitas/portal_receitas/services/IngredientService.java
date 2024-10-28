@@ -22,6 +22,6 @@ public class IngredientService {
 
     public Ingredient findById(Long id) {
         Optional<Ingredient> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElse(null);
     }
 }

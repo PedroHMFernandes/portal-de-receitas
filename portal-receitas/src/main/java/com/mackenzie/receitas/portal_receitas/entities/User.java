@@ -21,8 +21,8 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "author")
     @JsonIgnore
+    @OneToMany(mappedBy = "author")
     private List<Recipe> recipes = new ArrayList<>();
 
     public User() {
@@ -69,10 +69,6 @@ public class User implements Serializable {
 
     public List<Recipe> getRecipes() {
         return recipes;
-    }
-
-    public void addRecipe(Recipe recipe) {
-        recipes.add(recipe);
     }
 
     @Override

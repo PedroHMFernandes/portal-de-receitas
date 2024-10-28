@@ -1,9 +1,12 @@
 package com.mackenzie.receitas.portal_receitas.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -14,6 +17,10 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
+    private Set<Recipe> recipes = new HashSet<>();
 
     public Category() {
     }
