@@ -1,6 +1,7 @@
 package com.mackenzie.receitas.portal_receitas.config;
 
 import com.mackenzie.receitas.portal_receitas.entities.Category;
+import com.mackenzie.receitas.portal_receitas.entities.Ingredient;
 import com.mackenzie.receitas.portal_receitas.entities.Recipe;
 import com.mackenzie.receitas.portal_receitas.entities.User;
 import com.mackenzie.receitas.portal_receitas.repositories.CategoryRepository;
@@ -32,6 +33,8 @@ public class TestConfig implements CommandLineRunner {
         User u1 = new User(null, "Maria", "maria@gmail.com", "12345");
         User u2 = new User(null, "Jorge", "jorge@gmail.com", "12345");
         User u3 = new User(null, "Robirso", "robirso@gmail.com", "12345");
+
+        Ingredient i1 = new Ingredient(null, "Arroz", null);
 
         Category cat1 = new Category(null, "Aves");
         Category cat2 = new Category(null, "Molhos");

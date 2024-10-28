@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/portal-receitas.iml" filepath="$PROJECT_DIR$/.idea/portal-receitas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/portal-de-receitas.iml" filepath="$PROJECT_DIR$/.idea/portal-de-receitas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/portal-receitas/portal-receitas.iml" filepath="$PROJECT_DIR$/portal-receitas/portal-receitas.iml" />
     </modules>
   </component>
 </project>

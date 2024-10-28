@@ -4,6 +4,8 @@ package com.mackenzie.receitas.portal_receitas.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -29,11 +31,20 @@ public class Recipe implements Serializable {
     @JoinColumn(name = "user_id")
     private User author;
 
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_ingredients",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    )
+    private List<Ingredient> ingredients = new ArrayList<>();
+
     public Recipe() {
     }
 
     public Recipe(Long id, String name, String imageLink, String description,
-                  Integer prepTimeMinutes, Integer servings, Category category, User author) {
+                  Integer prepTimeMinutes, Integer servings,
+                  Category category, User author, List<Ingredient> ingredients) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageLink;
@@ -42,6 +53,7 @@ public class Recipe implements Serializable {
         this.servings = servings;
         this.category = category;
         this.author = author;
+        this.ingredients = ingredients;
     }
 
     public Long getId() {
@@ -107,6 +119,10 @@ public class Recipe implements Serializable {
     public void setAuthor(User author) {
         this.author = author;
     }
+
+    public List<Ingredient> getIngredients() { return ingredients; }
+
+    public void setIngredients(List<Ingredient> ingredients) { this.ingredients = ingredients; }
 
     @Override
     public boolean equals(Object o) {
